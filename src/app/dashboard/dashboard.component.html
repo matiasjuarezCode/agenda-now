@@ -1,0 +1,38 @@
+<div class="dashboard">
+
+  <aside class="sidebar">
+    <h2>Dashboard</h2>
+    <ul>
+      <!-- 
+          COMENTARIO DIDÁCTICO: Eventos y Clases
+          Pulsar en estas opciones cambia la variable 'seccionActual' del TS.
+          Usamos [class.active] para que se vea resaltada la opción seleccionada.
+      -->
+      <li [class.active]="seccionActual === 'empresas'" (click)="cambiarSeccion('empresas')">Empresas</li>
+      <li [class.active]="seccionActual === 'clientes'" (click)="cambiarSeccion('clientes')">Clientes</li>
+      <!-- 
+          RETO PARA EL ALUMNO:
+          Agrega aquí las opciones para 'Brokers' y 'Proveedores' siguiendo
+          el mismo patrón de arriba.
+      -->
+    </ul>
+  </aside>
+
+  <main class="content">
+    
+    <!-- Renderizamos Empresas solo si seccionActual es 'empresas' -->
+    <app-empresas *ngIf="seccionActual === 'empresas'"></app-empresas>
+
+    <!-- 
+      COMENTARIO DIDÁCTICO: Reto para el alumno
+      Deberás colocar aquí los nuevos selectores de componentes (como <app-clientes>)
+      usando *ngIf para que se muestren solo cuando sea su sección.
+    -->
+    <div *ngIf="seccionActual !== 'empresas'" class="placeholder-reto">
+        <h3>Próximamente: ABM de {{ seccionActual | uppercase }}</h3>
+        <p>Tu reto es crear este componente siguiendo el ejemplo del de empresas.</p>
+    </div>
+
+  </main>
+
+</div>
