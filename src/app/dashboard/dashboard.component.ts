@@ -1,11 +1,16 @@
-import { Component } from '@angular/core';
+import { Component } from '@angular/core'
 import { CommonModule } from '@angular/common';
 import { EmpresasComponent } from '../empresas/empresas.component';
+
+import { Broker } from '../broker/broker';
+import { Proveedor } from '../proveedor/proveedor';
+import { Clientecomponent } from '../cliente/cliente';
+
 
 @Component({
   selector: 'app-dashboard',
   standalone: true,
-  imports: [CommonModule, EmpresasComponent],
+  imports: [CommonModule, EmpresasComponent, Broker, Proveedor, Clientecomponent],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.scss'
 })
@@ -38,7 +43,7 @@ export class DashboardComponent {
  * 
  * 2. MODELO BROKER (broker.model.ts)
  *      id: number;
- *      nombre: string;
+ *      nombre: string; 
  *      comision: number; // Porcentaje de ganancia
  *      telefono: string;
  * 
