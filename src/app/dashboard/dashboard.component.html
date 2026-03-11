@@ -10,7 +10,7 @@
       -->
       <li [class.active]="seccionActual === 'empresas'" (click)="cambiarSeccion('empresas')">Empresas</li>
       <li [class.active]="seccionActual === 'cliente'" (click)="cambiarSeccion('cliente')">Cliente</li>
-      <li [class.active]="seccionActual === 'broker'" (click)="cambiarSeccion('brokers')">broker</li>
+      <li [class.active]="seccionActual === 'broker'" (click)="cambiarSeccion('broker')">broker</li>
       <li [class.active]="seccionActual === 'proveedor'" (click)="cambiarSeccion('proveedor')">Proveedor</li>
          <!--RETO PARA EL ALUMNO:
           Agrega aquí las opciones para 'Brokers' y 'Proveedores' siguiendo
@@ -24,7 +24,7 @@
     <!-- Renderizamos Empresas solo si seccionActual es 'empresas' -->
     <app-empresas *ngIf="seccionActual === 'empresas'"></app-empresas>
 
-    <app-clientes *ngIf="seccionActual === 'clientes'"></app-clientes>
+    <app-cliente *ngIf="seccionActual === 'cliente'"></app-cliente>
 
     <app-broker *ngIf="seccionActual === 'broker'"></app-broker>
 
@@ -36,8 +36,7 @@
       usando *ngIf para que se muestren solo cuando sea su sección.
     -->
     <div *ngIf="seccionActual !== 'empresas'" class="placeholder-reto">
-        <h3>Próximamente: ABM de {{ seccionActual | uppercase }}</h3>
-        <p>Tu reto es crear este componente siguiendo el ejemplo del de empresas.</p>
+      
     </div>
 
   </main>
