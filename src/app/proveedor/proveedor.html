@@ -1,1 +1,85 @@
-<h3>provando ando</h3>
+<div class="proveedores-container">
+
+  <h2>Gestión de Proveedores</h2>
+
+  <div class="card-formulario">
+
+    <h3>{{ editando ? 'Editar Proveedor' : 'Nuevo Proveedor' }}</h3>
+
+    <div class="form-group">
+      <label>Razón Social:</label>
+      <input type="text" [(ngModel)]="proveedorForm.razonSocial">
+    </div>
+
+    <div class="form-group">
+      <label>CUIT:</label>
+      <input type="text" [(ngModel)]="proveedorForm.cuit">
+    </div>
+
+    <div class="form-group">
+      <label>Email:</label>
+      <input type="email" [(ngModel)]="proveedorForm.email">
+    </div>
+
+    <div class="acciones-form">
+
+      <button (click)="guardar()" class="btn-guardar">
+        {{ editando ? 'Actualizar' : 'Guardar' }}
+      </button>
+
+      <button (click)="cancelar()" class="btn-cancelar">
+        Limpiar / Cancelar
+      </button>
+
+    </div>
+
+  </div>
+
+  <hr>
+
+  <h3>Listado de Proveedores ({{ proveedores.length }})</h3>
+
+  <table class="tabla-proveedores" >
+
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Razón Social</th>
+        <th>CUIT</th>
+        <th>Email</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+
+    <tbody>
+
+      <tr *ngFor="let proveedor of proveedores">
+
+        <td>{{ proveedor.id }}</td>
+        <td>{{ proveedor.razonSocial }}</td>
+        <td>{{ proveedor.cuit }}</td>
+        <td>{{ proveedor.email }}</td>
+
+        <td>
+
+          <button (click)="seleccionarParaEditar(proveedor)">
+            Editar
+          </button>
+
+          <button (click)="eliminar(proveedor.id)">
+            Eliminar
+          </button>
+
+        </td>
+
+      </tr>
+
+      <tr *ngIf="proveedores.length === 0">
+        <td colspan="5">No hay proveedores registrados</td>
+      </tr>
+
+    </tbody>
+
+  </table>
+
+</div>

@@ -2,14 +2,14 @@ import { Component } from '@angular/core'
 import { CommonModule } from '@angular/common';
 import { EmpresasComponent } from '../empresas/empresas.component';
 import { Brokercomponent } from '../broker/broker';
-import { Proveedor } from '../proveedor/proveedor';
+import { ProveedorComponent } from '../proveedor/proveedor';
 import { Clientecomponent } from '../cliente/cliente';
 
 
 @Component({
   selector: 'app-dashboard',
   standalone: true,
-  imports: [CommonModule, EmpresasComponent, Brokercomponent, Proveedor, Clientecomponent],
+  imports: [CommonModule, EmpresasComponent, Brokercomponent, ProveedorComponent, Clientecomponent],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.scss'
 })

@@ -1,14 +1,87 @@
-<h3>cometa</h3>
-<table>
-    <tr>
-        <th>nombre</th>
-        <th>comision</th>
-        <th>telefono</th>
-    </tr>
+<div class="brokers-container">
 
+  <h2>Gestión de Brokers</h2>
 
-    
+  <div class="card-formulario">
 
+    <h3>{{ editando ? 'Editar Broker' : 'Nuevo Broker' }}</h3>
 
-</table>
+    <div class="form-group">
+      <label>Nombre:</label>
+      <input type="text" [(ngModel)]="brokerForm.nombre" placeholder="Ej: Juan">
+    </div>
 
+    <div class="form-group">
+      <label>Comisión:</label>
+      <input type="number" [(ngModel)]="brokerForm.comision" placeholder="Ej: 10">
+    </div>
+
+    <div class="form-group">
+      <label>Teléfono:</label>
+      <input type="tel" [(ngModel)]="brokerForm.telefono" placeholder="Ej: 11223344">
+    </div>
+
+    <div class="acciones-form">
+
+      <button (click)="guardar()" class="btn-guardar">
+        {{ editando ? 'Actualizar' : 'Guardar' }}
+      </button>
+
+      <button (click)="cancelar()" class="btn-cancelar">
+        Limpiar / Cancelar
+      </button>
+
+    </div>
+
+  </div>
+
+  <hr>
+
+  <h3>Listado de Brokers ({{ brokers.length }})</h3>
+
+  <table class="tabla-brokers">
+
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Nombre</th>
+        <th>Comisión</th>
+        <th>Teléfono</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+
+    <tbody>
+
+      <tr *ngFor="let broker of brokers">
+
+        <td>{{ broker.id }}</td>
+        <td>{{ broker.nombre }}</td>
+        <td>{{ broker.comision }}</td>
+        <td>{{ broker.telefono }}</td>
+
+        <td class="acciones-tabla">
+
+          <button (click)="seleccionarParaEditar(broker)" class="btn-edit">
+            Editar
+          </button>
+
+          <button (click)="eliminar(broker.id)" class="btn-delete">
+            Eliminar
+          </button>
+
+        </td>
+
+      </tr>
+
+      <tr *ngIf="brokers.length === 0">
+        <td colspan="5" style="text-align:center">
+          No hay brokers registrados
+        </td>
+      </tr>
+
+    </tbody>
+
+  </table>
+
+</div>

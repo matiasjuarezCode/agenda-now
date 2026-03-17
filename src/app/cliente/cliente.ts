@@ -1,15 +1,19 @@
+import { Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { cliente } from './cliente.model';
 import { FormsModule } from '@angular/forms';
+
 @Component({
   selector: 'app-cliente',
-  imports: [CommonModule, FormsModule,],
+  imports: [CommonModule, FormsModule],
   standalone: true,
   templateUrl: './cliente.html',
   styleUrls: ['./cliente.scss'],
 })
 export class Clientecomponent {
+
+  @Input() empresaId!: number;
 
  clientes: cliente [] = []
 
@@ -21,7 +25,12 @@ export class Clientecomponent {
   email: '',
   telefono: '',
   empresaId: 0
+
 };
+
+get clientesFiltrados() {
+  return this.clientes.filter(c => c.empresaId === this.empresaId);
+}
 guardar() {
 
   if (!this.editando) {
