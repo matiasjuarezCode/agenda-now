@@ -11,15 +11,15 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms'; // Necesario para usar [(ngModel)]
 import { Empresa } from './empresa.model'; // Importamos nuestra interfaz
-
+import { Clientecomponent } from '../cliente/cliente';
 @Component({
   selector: 'app-empresas',
   standalone: true, // Indica que este componente se maneja solo, sin depender de un NgModule
-  imports: [CommonModule, FormsModule], // Importamos módulos básicos para el HTML y formularios
+  imports: [CommonModule, FormsModule,Clientecomponent], // Importamos módulos básicos para el HTML y formularios
   templateUrl: './empresas.component.html',
   styleUrl: './empresas.component.scss'
 })
-export class EmpresasComponent {
+   export class EmpresasComponent{
 
   /**
    * COMENTARIO DIDÁCTICO: El "Estado" del componente.
@@ -39,6 +39,12 @@ export class EmpresasComponent {
 
   // Bandera para saber si estamos en modo "Editar" o "Agregar" nueva empresa
   editando: boolean = false;
+
+  empresaSeleccionadaId: number | null = null;
+
+ verClientes(id: number): void {
+  this.empresaSeleccionadaId = id;
+}
 
   /**
    * COMENTARIO DIDÁCTICO: Getters
@@ -62,7 +68,10 @@ export class EmpresasComponent {
       telefono: '',
       activa: true
     };
-  }
+
+   
+}
+  
 
   /**
    * COMENTARIO DIDÁCTICO: El Spread Operator { ...objeto }

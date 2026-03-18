@@ -78,6 +78,9 @@
         <td>{{ empresa.nombre }}</td>
         <td>{{ empresa.email }}</td>
         <td>{{ empresa.telefono }}</td>
+        
+      
+        
         <td>
           <!-- 
             COMENTARIO DIDÁCTICO: Class Binding Dinámico [class.xxx]
@@ -92,6 +95,7 @@
            <!-- (click) llama al método del TS pasando el objeto 'empresa' que estamos recorriendo -->
            <button (click)="seleccionarParaEditar(empresa)" class="btn-edit">Editar</button>
            <button (click)="eliminar(empresa.id)" class="btn-delete">Eliminar</button>
+           <button (click)="verClientes(empresa.id)" class="btn-cliente">Ver cliente</button>
         </td>
       </tr>
 
@@ -101,5 +105,8 @@
       </tr>
     </tbody>
   </table>
-
+<app-cliente 
+  *ngIf="empresaSeleccionadaId !== null"
+  [empresaId]="empresaSeleccionadaId">
+</app-cliente>
 </div>
