@@ -4,12 +4,14 @@ import { EmpresasComponent } from '../empresas/empresas.component';
 import { Brokercomponent } from '../broker/broker';
 import { ProveedorComponent } from '../proveedor/proveedor';
 import { Clientecomponent } from '../cliente/cliente';
+import { ProductoComponent } from "../producto/producto.component";
+import { PedidoComponent } from '../pedido/pedido';
 
 
 @Component({
   selector: 'app-dashboard',
   standalone: true,
-  imports: [CommonModule, EmpresasComponent, Brokercomponent, ProveedorComponent, Clientecomponent],
+  imports: [CommonModule, EmpresasComponent, Brokercomponent, ProveedorComponent, Clientecomponent, ProductoComponent],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.scss'
 })

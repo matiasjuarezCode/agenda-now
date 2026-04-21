@@ -12,9 +12,10 @@
       <li [class.active]="seccionActual === 'cliente'" (click)="cambiarSeccion('cliente')">Cliente</li>
       <li [class.active]="seccionActual === 'broker'" (click)="cambiarSeccion('broker')">broker</li>
       <li [class.active]="seccionActual === 'proveedor'" (click)="cambiarSeccion('proveedor')">Proveedor</li>
-         <!--RETO PARA EL ALUMNO:
+      <li [class.active]="seccionActual === 'producto'" (click)="cambiarSeccion('producto')">Producto</li>
+      <li [class.active]="seccionActual === 'pedido'" (click)="cambiarSeccion('pedido')"> Pedido</li>   <!--RETO PARA EL ALUMNO:
           Agrega aquí las opciones para 'Brokers' y 'Proveedores' siguiendo
-          el mismo patrón de arriba.
+          el mismo patrón de arriba. 
          --> 
     </ul>
   </aside>
@@ -29,6 +30,10 @@
     <app-broker *ngIf="seccionActual === 'broker'"></app-broker>
 
     <app-proveedor *ngIf="seccionActual === 'proveedor'"></app-proveedor>
+
+    <app-producto *ngIf="seccionActual === 'producto'"></app-producto>
+
+    <app-producto *ngIf="seccionActual === 'pedido'"></app-producto>
    
     <!-- 
       COMENTARIO DIDÁCTICO: Reto para el alumno
