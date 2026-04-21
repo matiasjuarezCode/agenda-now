@@ -1,15 +1,15 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { Pedido } from './pedido.model';
 import { Producto } from '../producto/producto.component.model';
+import { Pedido } from './pedido.component.model';
 
 @Component({
   selector: 'app-pedido',
   standalone: true,
   imports: [CommonModule, FormsModule],
-  templateUrl: './pedido.html',
-  styleUrls: ['./pedido.scss'],
+templateUrl: './pedido.component.html',
+  styleUrls: ['./pedido.component.scss'],
 })
 export class PedidoComponent {
 

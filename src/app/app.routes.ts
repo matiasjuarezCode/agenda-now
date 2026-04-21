@@ -5,7 +5,7 @@ import { ProveedorComponent } from './proveedor/proveedor';
 import { Clientecomponent } from './cliente/cliente';
 import { Brokercomponent } from './broker/broker';
 import { ProductoComponent } from './producto/producto.component';
-import { PedidoComponent } from './pedido/pedido';
+import { PedidoComponent } from './pedido/pedido.component';
 
 export const routes: Routes = [
   { path: '', component: DashboardComponent },

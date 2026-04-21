@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Producto } from './producto.component.model';
+import { PedidoComponent } from '../pedido/pedido.component';
 
 @Component({
   selector: 'app-producto',
