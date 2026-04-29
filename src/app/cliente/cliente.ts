@@ -28,11 +28,12 @@ export class Clientecomponent {
 
 };
 
-get clientesFiltrados() {
+get clienteFiltrados() {
   return this.clientes.filter(c => c.empresaId === this.empresaId);
 }
 guardar() {
-
+ this.clienteForm.empresaId = this.empresaId;
+ 
   if (!this.editando) {
 
     const nuevoCliente = {

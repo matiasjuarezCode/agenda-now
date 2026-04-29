@@ -10,5 +10,5 @@
   },
   "include": [
     "src/**/*.ts"
-  ]
+, "src/app/producto/producto.componentts"  ]
 }

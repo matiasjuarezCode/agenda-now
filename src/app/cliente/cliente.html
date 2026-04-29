@@ -22,8 +22,7 @@
     </div>
 
     <div class="form-group">
-      <label>ID Empresa:</label>
-      <input type="number" [(ngModel)]="clienteForm.empresaId">
+   
     </div>
 
     <div class="acciones-form">
@@ -40,7 +39,7 @@
 
   <hr>
 
-  <h3>Listado de Clientes ({{ clientes.length }})</h3>
+  <h3>Listado de Clientes ({{ clienteFiltrados.length }})</h3>
 
   <table class="tabla-clientes">
     <thead>
@@ -56,7 +55,7 @@
 
     <tbody>
 
-      <tr *ngFor="let cliente of clientes">
+      <tr *ngFor="let cliente of clienteFiltrados">
         <td>{{ cliente.id }}</td>
         <td>{{ cliente.nombre }}</td>
         <td>{{ cliente.email }}</td>

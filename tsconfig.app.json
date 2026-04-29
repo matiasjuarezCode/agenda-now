@@ -10,7 +10,7 @@
   },
   "include": [
     "src/**/*.ts"
-  ],
+, "src/app/producto/producto.componentts"  ],
   "exclude": [
     "src/**/*.spec.ts"
   ]

@@ -1,0 +1,81 @@
+
+
+<div class="pedido-container">
+
+ <h2>Gestión de pedido</h2>
+
+  <div class="card-formulario">
+
+    <h3>{{ editando ? 'Editar Pedido' : 'Nuevo Pedido' }}</h3>
+
+    <div class="form-group">
+      <label>clienteId:</label>
+      <input type="text" [(ngModel)]="pedidoForm.clienteId" placeholder="Pedido">
+    </div>
+
+    <div class="form-group">
+      <label>productos:</label>
+      <input type="number" [(ngModel)]="pedidoForm.productos" placeholder="000">
+    </div>
+
+    <div class="form-group">
+      <label>total:</label>
+      <input type="number" [(ngModel)]="pedidoForm.total" placeholder="000">
+    </div>
+
+    <div class="acciones-form">
+      <button (click)="guardar()" class="btn-guardar">
+        {{ editando ? 'Actualizar' : 'Guardar' }}
+      </button>
+
+      <button (click)="cancelar()" class="btn-cancelar">
+        Limpiar / Cancelar
+      </button>
+    </div>
+
+  </div>
+
+  <hr>
+
+  <h3>Listado de pedido ({{ pedidos.length }})</h3>
+
+  <table class="tabla-pedido">
+
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Cliente</th>
+        <th>total</th>
+     
+        <th>Acciones</th>
+      </tr>
+    </thead>
+
+    <tbody>
+
+      <tr *ngFor="let pedido of pedidos">
+        <td>{{ pedido.id }}</td>
+        <td>{{ pedido.clienteId }}</td>
+       
+        <td>{{ pedido.total }}</td>
+
+        <td>
+          <button (click)="seleccionarParaEditar(pedido)">
+            Editar
+          </button>
+
+          <button (click)="eliminar(pedido.id)">
+            Eliminar
+          </button>
+        </td>
+      </tr>
+
+      <tr *ngIf="pedidos.length === 0">
+        <td colspan="5">No hay pedidos registrados</td>
+      </tr>
+
+    </tbody>
+
+  </table>
+
+</div>

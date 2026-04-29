@@ -4,7 +4,7 @@
  * En TypeScript, el tipado nos ayuda a evitar errores: si intentas acceder a 
  * empresa.nomre (con error), TypeScript te avisará inmediatamente que esa 
  * propiedad no existe en la interfaz Empresa.
- */
+ **/
 export interface Empresa {
   id: number;
   nombre: string;

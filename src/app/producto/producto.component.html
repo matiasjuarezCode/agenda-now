@@ -1,0 +1,81 @@
+
+
+<div class="producto-container">
+
+ <h2>Gestión de producto</h2>
+
+  <div class="card-formulario">
+
+    <h3>{{ editando ? 'Editar Producto' : 'Nuevo Producto' }}</h3>
+
+    <div class="form-group">
+      <label>nombre:</label>
+      <input type="text" [(ngModel)]="productoForm.nombre" placeholder="Producto">
+    </div>
+
+    <div class="form-group">
+      <label>precio:</label>
+      <input type="number" [(ngModel)]="productoForm.precio" placeholder="000">
+    </div>
+
+    <div class="form-group">
+      <label>stock:</label>
+      <input type="number" [(ngModel)]="productoForm.stock" placeholder="000">
+    </div>
+
+    <div class="acciones-form">
+      <button (click)="guardar()" class="btn-guardar">
+        {{ editando ? 'Actualizar' : 'Guardar' }}
+      </button>
+
+      <button (click)="cancelar()" class="btn-cancelar">
+        Limpiar / Cancelar
+      </button>
+    </div>
+
+  </div>
+
+  <hr>
+
+  <h3>Listado de producto ({{ productos.length }})</h3>
+
+  <table class="tabla-productos">
+
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>nombre</th>
+        <th>precio</th>
+        <th>stock</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+
+    <tbody>
+
+      <tr *ngFor="let producto of productos">
+        <td>{{ producto.id }}</td>
+        <td>{{ producto.nombre }}</td>
+        <td>{{ producto.precio }}</td>
+        <td>{{ producto.stock }}</td>
+
+        <td>
+          <button (click)="seleccionarParaEditar(producto)">
+            Editar
+          </button>
+
+          <button (click)="eliminar(producto.id)">
+            Eliminar
+          </button>
+        </td>
+      </tr>
+
+      <tr *ngIf="productos.length === 0">
+        <td colspan="5">No hay productos registrados</td>
+      </tr>
+
+    </tbody>
+
+  </table>
+
+</div>

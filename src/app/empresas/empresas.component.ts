@@ -5,17 +5,18 @@
  * 1. Clase TS (EmpresasComponent): Contiene la lógica y los datos.
  * 2. Template HTML (empresas.component.html): Estructura visual de lo que el usuario ve.
  * 3. Estilos SCSS (empresas.component.scss): Apariencia visual del componente.
- */
+*/
 
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms'; // Necesario para usar [(ngModel)]
 import { Empresa } from './empresa.model'; // Importamos nuestra interfaz
 import { Clientecomponent } from '../cliente/cliente';
+
 @Component({
   selector: 'app-empresas',
   standalone: true, // Indica que este componente se maneja solo, sin depender de un NgModule
-  imports: [CommonModule, FormsModule,Clientecomponent], // Importamos módulos básicos para el HTML y formularios
+  imports: [CommonModule, FormsModule, Clientecomponent], // Importamos módulos básicos para el HTML y formularios
   templateUrl: './empresas.component.html',
   styleUrl: './empresas.component.scss'
 })
