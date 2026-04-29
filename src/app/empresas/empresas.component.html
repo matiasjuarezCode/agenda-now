@@ -7,8 +7,18 @@
     [(ngModel)]="campo"     → Binding de dos vías: El valor del HTML actualiza el TS y viceversa.
 -->
 
-<div class="empresas-container">
+<style>
+  .error {
+    color: red;
+    font-size: 0.9em;
+  }
 
+  input.ng-invalid.ng-touched {
+    border: 1px solid red;
+  }
+</style>
+
+<div class="empresas-container">
   <h2>Gestión de Empresas</h2>
 
   <!-- 
@@ -16,43 +26,99 @@
     Usamos *ngIf para condicionar que el formulario solo aparezca cuando el usuario no 
     tenga nada cargado o esté editando. Aquí nos sirve para controlar el flujo visual.
   -->
-  <div class="card-formulario">
-    <h3>{{ editando ? 'Editar Empresa' : 'Nueva Empresa' }}</h3>
-    
+  <div class="card-formulario" [formGroup]="empresaFormGroup">
+    <h3>{{ editando ? "Editar Empresa" : "Nueva Empresa" }}</h3>
+
     <div class="form-group">
       <label>Nombre de la Empresa:</label>
-      <!-- 
-        COMENTARIO DIDÁCTICO: Two-Way Binding [(ngModel)]
-        Lo que el usuario escribe viaja automáticamente a la variable 'empresaForm.nombre' en el TS. 
-        Si desde el TS cambiamos la variable, el input se actualiza solo en el HTML.
-      -->
-      <input type="text" [(ngModel)]="empresaForm.nombre" placeholder="Ej: Microsoft">
+      <input
+        type="text"
+        formControlName="nombre"
+        placeholder="Ej: Microsoft"
+        (blur)="empresaFormGroup.get('nombre')?.markAsTouched()"
+      />
+      <div
+        class="error"
+        *ngIf="
+          empresaFormGroup.get('nombre')?.invalid &&
+          empresaFormGroup.get('nombre')?.touched
+        "
+      >
+        El nombre es obligatorio.
+      </div>
     </div>
 
     <div class="form-group">
       <label>Correo Electrónico:</label>
-      <input type="email" [(ngModel)]="empresaForm.email" placeholder="email@empresa.com">
+      <input
+        type="email"
+        formControlName="email"
+        placeholder="email@empresa.com"
+        (blur)="empresaFormGroup.get('email')?.markAsTouched()"
+      />
+      <div
+        class="error"
+        *ngIf="
+          empresaFormGroup.get('email')?.invalid &&
+          empresaFormGroup.get('email')?.touched
+        "
+      >
+        <span *ngIf="empresaFormGroup.get('email')?.errors?.['required']"
+          >El correo es obligatorio.</span
+        >
+        <span *ngIf="empresaFormGroup.get('email')?.errors?.['email']"
+          >Formato de correo inválido.</span
+        >
+      </div>
     </div>
 
     <div class="form-group">
       <label>Teléfono:</label>
-      <input type="tel" [(ngModel)]="empresaForm.telefono" placeholder="Ej: 11223344">
+      <input
+        type="tel"
+        formControlName="telefono"
+        placeholder="Ej: 11223344"
+        (blur)="empresaFormGroup.get('telefono')?.markAsTouched()"
+      />
+      <div
+        class="error"
+        *ngIf="
+          empresaFormGroup.get('telefono')?.invalid &&
+          empresaFormGroup.get('telefono')?.touched
+        "
+      >
+        <span *ngIf="empresaFormGroup.get('telefono')?.errors?.['required']"
+          >El teléfono es obligatorio.</span
+        >
+        <span *ngIf="empresaFormGroup.get('telefono')?.errors?.['minlength']"
+          >El teléfono debe tener al menos 8 caracteres.</span
+        >
+      </div>
     </div>
 
     <div class="form-group row">
-       <label>
-         <input type="checkbox" [(ngModel)]="empresaForm.activa">
-         Empresa Activa
-       </label>
+      <label>
+        <input type="checkbox" formControlName="activa" />
+        Empresa Activa
+      </label>
     </div>
 
     <div class="acciones-form">
-      <button (click)="guardar()" class="btn-guardar">{{ textoBoton }}</button>
-      <button (click)="cancelar()" class="btn-cancelar">Limpiar / Cancelar</button>
+      <button
+        (click)="guardar()"
+        class="btn-guardar"
+        [disabled]="empresaFormGroup.invalid"
+        (click)="empresaFormGroup.markAllAsTouched()"
+      >
+        {{ textoBoton }}
+      </button>
+      <button (click)="cancelar()" class="btn-cancelar">
+        Limpiar / Cancelar
+      </button>
     </div>
   </div>
 
-  <hr>
+  <hr />
 
   <h3>Listado de Empresas ({{ empresas.length }})</h3>
 
@@ -78,35 +144,45 @@
         <td>{{ empresa.nombre }}</td>
         <td>{{ empresa.email }}</td>
         <td>{{ empresa.telefono }}</td>
-        
-      
-        
+
         <td>
           <!-- 
             COMENTARIO DIDÁCTICO: Class Binding Dinámico [class.xxx]
             Angular agrega la clase de CSS 'activa' solo si la propiedad 'empresa.activa' es true, 
              y la clase 'inactiva' si es false. Estilizamos condicionalmente desde el HTML.
           -->
-          <span [class.activa]="empresa.activa" [class.inactiva]="!empresa.activa">
-            {{ empresa.activa ? 'Activa' : 'Inactiva' }}
+          <span
+            [class.activa]="empresa.activa"
+            [class.inactiva]="!empresa.activa"
+          >
+            {{ empresa.activa ? "Activa" : "Inactiva" }}
           </span>
         </td>
         <td class="acciones-tabla">
-           <!-- (click) llama al método del TS pasando el objeto 'empresa' que estamos recorriendo -->
-           <button (click)="seleccionarParaEditar(empresa)" class="btn-edit">Editar</button>
-           <button (click)="eliminar(empresa.id)" class="btn-delete">Eliminar</button>
-           <button (click)="verClientes(empresa.id)" class="btn-cliente">Ver cliente</button>
+          <!-- (click) llama al método del TS pasando el objeto 'empresa' que estamos recorriendo -->
+          <button (click)="seleccionarParaEditar(empresa)" class="btn-edit">
+            Editar
+          </button>
+          <button (click)="eliminar(empresa.id)" class="btn-delete">
+            Eliminar
+          </button>
+          <button (click)="verClientes(empresa.id)" class="btn-cliente">
+            Ver cliente
+          </button>
         </td>
       </tr>
 
       <!-- Mensaje si no hay empresas -->
       <tr *ngIf="empresas.length === 0">
-        <td colspan="6" style="text-align: center;">No hay empresas registradas.</td>
+        <td colspan="6" style="text-align: center">
+          No hay empresas registradas.
+        </td>
       </tr>
     </tbody>
   </table>
- <app-cliente 
-  *ngIf="empresaSeleccionadaId !== null"
-  [empresaId]="empresaSeleccionadaId">
- </app-cliente>
+  <app-cliente
+    *ngIf="empresaSeleccionadaId !== null"
+    [empresaId]="empresaSeleccionadaId"
+  >
+  </app-cliente>
 </div>
